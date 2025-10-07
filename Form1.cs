@@ -123,15 +123,15 @@ namespace NtpWeek2
                     SmtpClient client = new SmtpClient();
 
                     // Gmail settings
-                    client.Credentials = new System.Net.NetworkCredential("meteburak2003@gmail.com", "kiop oghm lzkp brbo");
+                    client.Credentials = new System.Net.NetworkCredential("mail", "app-password");
                     client.Port = 587;
                     client.Host = "smtp.gmail.com";
                     client.EnableSsl = true;
 
                     txt.Body = log.ToString();
                     txt.Subject = "#Log";
-                    txt.From = new MailAddress("meteburak2003@gmail.com");
-                    txt.To.Add("ntpweek2@outlook.com");
+                    txt.From = new MailAddress("mail");
+                    txt.To.Add("mail");
 
                     client.Send(txt);
                     
