@@ -6,12 +6,15 @@ It is running now.
 
 <img width="2559" height="71" alt="image" src="https://github.com/user-attachments/assets/2737e5c8-204d-4433-a674-74a0cb827adf" />
 
-
-
-
-
-
-
+|
+|
+|
+|
+|
+|
+|
+|
+|
 
 It only shows up in startup applications, and you can use it by hiding its name, for example (win32)
 
